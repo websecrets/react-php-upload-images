@@ -1,0 +1,228 @@
+.upload-queue {
+    margin: 25px 0;
+    animation: fadeIn 0.3s ease;
+}
+
+.queue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px 12px 0 0;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.queue-count {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.queue-items {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 2px solid #e0e7ff;
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    background: white;
+}
+
+.queue-item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto auto;
+    gap: 15px;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.queue-item:last-child {
+    border-bottom: none;
+}
+
+.queue-item:hover {
+    background: #f8f9ff;
+}
+
+/* Status-based styling */
+.queue-item.status-success {
+    background: #f0fdf4;
+}
+
+.queue-item.status-failed {
+    background: #fef2f2;
+}
+
+.queue-item.status-canceled {
+    background: #f5f5f5;
+    opacity: 0.7;
+}
+
+/* Preview Thumbnail */
+.item-preview {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* File Info */
+.item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.item-name {
+    font-weight: 600;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+}
+
+.item-size {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Status Badge */
+.item-status-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Progress Bar */
+.item-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #e0e7ff;
+}
+
+.item-progress-fill {
+    height: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    position: relative;
+}
+
+.item-progress-text {
+    position: absolute;
+    right: 15px;
+    bottom: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #667eea;
+    background: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Error Message */
+.item-error {
+    grid-column: 2 / -1;
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: -5px;
+}
+
+/* Cancel Button */
+.item-cancel-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #e74c3c;
+    background: white;
+    color: #e74c3c;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.item-cancel-btn:hover {
+    background: #e74c3c;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Scrollbar Styling */
+.queue-items::-webkit-scrollbar {
+    width: 8px;
+}
+
+.queue-items::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+.queue-items::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 4px;
+}
+
+.queue-items::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .queue-item {
+        grid-template-columns: 50px 1fr auto;
+        gap: 10px;
+    }
+
+    .item-preview {
+        width: 50px;
+        height: 50px;
+    }
+
+    .item-status-badge {
+        grid-column: 2 / 3;
+        grid-row: 2;
+        justify-self: start;
+        margin-top: 5px;
+    }
+
+    .item-cancel-btn {
+        grid-column: 3;
+        grid-row: 1;
+    }
+}
